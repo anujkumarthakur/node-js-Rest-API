@@ -1,9 +1,5 @@
 // <------- Resource Link --------->
 
-//http://mfikri.com/en/blog/nodejs-restful-api-mysql
-
-//https://stackoverflow.com/questions/1951320/find-all-the-name-using-mysql-query-which-start-with-the-letter-a/39991872
-
 //SELECT * FROM product WHERE product_name REGEXP '^[abc]';
 
 const express = require('express');
