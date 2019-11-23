@@ -1,5 +1,3 @@
-// <------- Resource Link --------->
-
 //SELECT * FROM product WHERE product_name REGEXP '^[abc]';
 
 const express = require('express');
@@ -35,8 +33,15 @@ app.get('/api/products',(req, res) => {
 });
 
 //search products by product name here I am using regular Exp. 
-app.get('/api/product',(req, res) => {
-  let sql = "SELECT * FROM product WHERE product_name REGEXP +"'^[abc]'";";
+app.get('/api/product/:name',(req, res) => {
+  //first methode
+  //let reg = req.params.name
+  //let sql = "SELECT * FROM product WHERE product_name REGEXP " + "'^["+reg+"]';";
+  //Second Methode
+  let reg = '"' + '^' + '[' + req.params.name + ']' + '"'
+  console.log(reg)
+  let sql = `SELECT * FROM product WHERE product_name REGEXP ${reg}`;
+  console.log(sql)
   let query = conn.query(sql, (err, results) => {
     if(err) throw err;
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
